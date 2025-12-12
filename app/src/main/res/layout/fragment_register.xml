@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="@dimen/size_80"
+        android:layout_height="@dimen/size_80"
+        android:src="@drawable/app_logo_green"
+        android:elevation="@dimen/elevation_6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daftar"
+        android:textSize="@dimen/text_22"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="@dimen/spacing_10"
+        android:textColor="@color/textPrimary"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daftarkan akunmu untuk menlanjutkan!"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="@dimen/text_12"
+        android:textColor="@color/textThirdtinary"
+        android:layout_marginTop="-2dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_30"
+        app:cardElevation="@dimen/elevation_3"
+        app:cardCornerRadius="@dimen/radius_12"
+        android:layout_marginHorizontal="@dimen/spacing_15">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_15"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Pengguna"
+                android:textColor="@color/textSecondary"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="@dimen/text_14"/>
+
+            <LinearLayout
+                android:id="@+id/layoutUsername"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_45"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_input_unselected"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="20dp"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/size_15"
+                    android:layout_height="@dimen/size_15"
+                    android:src="@drawable/ic_username" />
+
+                <View
+                    android:layout_width="0.7dp"
+                    android:layout_height="@dimen/size_20"
+                    android:layout_marginLeft="@dimen/spacing_15"
+                    android:background="@color/textSecondary" />
+
+                <EditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Masukan nama pengguna anda..."
+                    android:paddingLeft="@dimen/spacing_15"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textColor="@color/textSecondary"
+                    android:textColorHint="@color/textThirdtinary"
+                    android:textCursorDrawable="@color/textSecondary"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Lengkap"
+                android:textColor="@color/textSecondary"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginTop="@dimen/spacing_15"
+                android:textSize="@dimen/text_14"/>
+
+            <LinearLayout
+                android:id="@+id/layoutFullname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_45"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_input_unselected"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="20dp"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/size_15"
+                    android:layout_height="@dimen/size_15"
+                    android:src="@drawable/ic_username" />
+
+                <View
+                    android:layout_width="0.7dp"
+                    android:layout_height="@dimen/size_20"
+                    android:layout_marginLeft="@dimen/spacing_15"
+                    android:background="@color/textSecondary" />
+
+                <EditText
+                    android:id="@+id/etFullname"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Masukan nama lengkap anda..."
+                    android:paddingLeft="@dimen/spacing_15"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textColor="@color/textSecondary"
+                    android:textColorHint="@color/textThirdtinary"
+                    android:textCursorDrawable="@color/textSecondary"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="@color/textSecondary"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginTop="@dimen/spacing_15"
+                android:textSize="@dimen/text_14"/>
+
+            <LinearLayout
+                android:id="@+id/layoutPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_45"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_input_unselected"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="20dp"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/size_15"
+                    android:layout_height="@dimen/size_15"
+                    android:src="@drawable/ic_password" />
+
+                <View
+                    android:layout_width="0.7dp"
+                    android:layout_height="@dimen/size_20"
+                    android:layout_marginLeft="@dimen/spacing_15"
+                    android:background="@color/textSecondary" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Masukan kata sandi anda..."
+                    android:paddingLeft="@dimen/spacing_15"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textColor="@color/textSecondary"
+                    android:textColorHint="@color/textThirdtinary"
+                    android:textCursorDrawable="@color/textSecondary"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_55"
+                android:layout_marginTop="@dimen/spacing_20">
+
+                <ProgressBar
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/primary"
+                    android:visibility="gone"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_55"
+                    android:backgroundTint="@color/primary"
+                    app:cornerRadius="@dimen/radius_16"
+                    android:text="Daftar"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="@dimen/text_14"/>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/spacing_15"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sudah punya akun? "
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/textThirdtinary"
+                    android:textSize="@dimen/text_12"/>
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masuk"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_12"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
