@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeMenu"
+        android:title="Beranda"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/consulMenu"
+        android:title="Konsultasi"
+        android:icon="@drawable/ic_consultation_mnu"/>
+
+
+    <item
+        android:id="@+id/communityMenu"
+        android:title="Komunitas"
+        android:icon="@drawable/ic_community"/>
+
+
+    <item
+        android:id="@+id/profileMenu"
+        android:title="Akun"
+        android:icon="@drawable/ic_profile"/>
+
+</menu>

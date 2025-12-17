@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5 Tips Ampuh untuk Terhindar dari Bahaya Kecanduan Judi Online"
+            android:maxLines="2"
+            android:minLines="2"
+            android:ellipsize="end"
+            android:justificationMode="inter_word"
+            android:textColor="@color/textPrimary"
+            android:textSize="12sp"
+            android:fontFamily="@font/ptsans_bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Memahami strategi pencegahan sejak dini adalah kunci utama. Simak  langkah-langkah praktis dan e..."
+            android:maxLines="2"
+            android:minLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/textThirdtinary"
+            android:textSize="12sp"
+            android:justificationMode="inter_word"
+            android:fontFamily="@font/ptsans_regular"/>
+
+    </LinearLayout>
+    
+    <com.appbroker.roundedimageview.RoundedImageView
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:radius="5dp"
+        android:src="@drawable/example_news"/>
+
+</LinearLayout>
