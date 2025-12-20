@@ -43,7 +43,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     implementation ("com.github.mmmelik:RoundedImageView:v1.0.1")
-    implementation ("com.github.ismaeldivita:chip-navigation-bar:1.4.0")
+    implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

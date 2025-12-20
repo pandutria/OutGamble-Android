@@ -3,23 +3,26 @@
     <item
         android:id="@+id/homeMenu"
         android:title="Beranda"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_home"
+        android:iconTint="@color/primary"
+        />
 
     <item
         android:id="@+id/consulMenu"
         android:title="Konsultasi"
-        android:icon="@drawable/ic_consultation_mnu"/>
-
+        android:icon="@drawable/ic_consultation_mnu"
+        android:iconTint="@color/primary"/>
 
     <item
         android:id="@+id/communityMenu"
         android:title="Komunitas"
-        android:icon="@drawable/ic_community"/>
+        android:icon="@drawable/ic_community"
+        android:iconTint="@color/primary"/>
 
 
     <item
         android:id="@+id/profileMenu"
         android:title="Akun"
-        android:icon="@drawable/ic_profile"/>
-
+        android:icon="@drawable/ic_profile"
+        android:iconTint="@color/primary"/>
 </menu>

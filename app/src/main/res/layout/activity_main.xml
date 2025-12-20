@@ -5,16 +5,30 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     tools:context=".MainActivity">
 
-
-    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+    <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNav"
+        />
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        app:cnb_unselectedColor="@color/textSecondary"
-        app:cnb_badgeColor="@color/primary"
-        app:cnb_menuResource="@menu/menu"/>
+        app:backgroundColor="@color/primary"
+        app:indicatorRadius="5dp"
+        app:iconSize="13dp"
+        app:textSize="10sp"
+        app:itemPadding="10dp"
+        app:iconMargin="8dp"
+        app:textColor="@color/white"
+        app:itemFontFamily="@font/poppins_medium"
+        app:menu="@menu/menu"/>
+
 
 </RelativeLayout>
