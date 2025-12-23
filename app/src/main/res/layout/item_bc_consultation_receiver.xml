@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="280dp"
+        android:text="Halo.👋 Saya teman baru Anda, Asisten Kesehatan. Anda dapat mengajukan pertanyaan apa pun kepada saya."
+        android:background="@drawable/bg_bc_consultation_receiver"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="start"/>
+
+</LinearLayout>

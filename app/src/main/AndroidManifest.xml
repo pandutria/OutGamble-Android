@@ -15,14 +15,24 @@
         android:theme="@style/Theme.OutGambleAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.community.chating.CommunityChatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.community.detail.CommunityDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.consultation.history.ConsultationHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.consultation.chating.ConsultationChatingActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.splash.SplashActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".presentation.auth.AuthActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -31,7 +41,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

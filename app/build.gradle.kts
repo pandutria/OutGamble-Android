@@ -44,6 +44,7 @@ dependencies {
 
     implementation ("com.github.mmmelik:RoundedImageView:v1.0.1")
     implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
