@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -45,12 +46,15 @@ dependencies {
     implementation ("com.github.mmmelik:RoundedImageView:v1.0.1")
     implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.github.mhadikz:toaster:1.0.0")
+    implementation ("com.github.bumptech.glide:glide:5.0.5")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

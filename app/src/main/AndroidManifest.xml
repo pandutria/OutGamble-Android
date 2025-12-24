@@ -15,6 +15,9 @@
         android:theme="@style/Theme.OutGambleAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.community.history.CommunityHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.community.chating.CommunityChatingActivity"
             android:exported="false" />
         <activity
@@ -31,16 +34,18 @@
             android:exported="false" />
         <activity
             android:name=".presentation.auth.AuthActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
         </activity>
     </application>
 

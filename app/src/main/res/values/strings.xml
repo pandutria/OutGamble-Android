@@ -3,4 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="see_all"><u>Lihat Semua</u></string>
+    <string name="error_register">Silakan periksa kembali data yang Anda masukkan dan coba lagi.</string>
+    <string name="success_register">Anda dapat login menggunakan akun yang telah dibuat.</string>
+    <string name="error_login">Login gagal. Username atau password yang Anda masukkan tidak sesuai. Silakan periksa kembali dan coba lagi.</string>
+    <string name="success_login">Login berhasil. Selamat datang, semoga aktivitas Anda berjalan lancar.</string>
+
+
+
 </resources>
