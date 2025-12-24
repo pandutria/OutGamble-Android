@@ -1,5 +1,6 @@
 package com.example.outgamble_android.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.outgamble_android.data.model.News
 import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.FragmentHomeBinding
 import com.example.outgamble_android.presentation.adapter.NewsAdapter
+import com.example.outgamble_android.presentation.news.NewsActivity
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -32,6 +34,12 @@ class HomeFragment : Fragment() {
         binding.tvFullname.text = "Hi, ${FullnamePref(requireContext()).get()}"
 
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.primary)
+
+        newsAdapter = NewsAdapter { news ->
+            val intent = Intent(requireActivity(), NewsActivity::class.java)
+            intent.putExtra("link", news.link)
+            startActivity(intent)
+        }
 
         viewModel.getNews()
         viewModel.newsState.observe(viewLifecycleOwner) {state ->
