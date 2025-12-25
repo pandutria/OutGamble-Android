@@ -68,16 +68,33 @@
         android:layout_below="@id/header"
         android:background="#939CBE"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_bc_consultation_sender"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:overScrollMode="never"
         android:layout_below="@id/headerLine"
-        android:layout_above="@id/layoutChat"
-        android:paddingTop="5dp"
-        android:scrollbars="none"/>
+        android:layout_above="@id/layoutChat">
+
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminateTint="@color/primary"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_bc_consultation_sender"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:overScrollMode="never"
+            android:paddingTop="5dp"
+            android:scrollbars="none"/>
+
+    </FrameLayout>
+
 
     <LinearLayout
         android:id="@+id/layoutChat"

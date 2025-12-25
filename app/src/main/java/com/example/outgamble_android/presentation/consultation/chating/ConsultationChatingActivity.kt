@@ -1,7 +1,7 @@
 package com.example.outgamble_android.presentation.consultation.chating
 
 import android.os.Bundle
-import android.window.OnBackInvokedDispatcher
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,15 +9,20 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.outgamble_android.R
+import com.example.outgamble_android.data.local.UserIdPref
 import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.ActivityConsultationChatingBinding
+import com.example.outgamble_android.presentation.adapter.ChatConsultationAdapter
 import com.example.outgamble_android.util.IntentHelper
 
 class ConsultationChatingActivity : AppCompatActivity() {
     private var _binding: ActivityConsultationChatingBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: ConsulattionChatingViewModel
+    private lateinit var viewModel: ConsulationChatingViewModel
+    private var consultationId: String? = null
+
+    private lateinit var adapter: ChatConsultationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +34,8 @@ class ConsultationChatingActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        viewModel = ViewModelProvider(this)[ConsulattionChatingViewModel::class.java]
+
+        viewModel = ViewModelProvider(this)[ConsulationChatingViewModel::class.java]
         binding.btnBack.setOnClickListener {
             IntentHelper.finish(this)
         }
@@ -54,6 +60,58 @@ class ConsultationChatingActivity : AppCompatActivity() {
                 }
                 is ResultState.Error -> {
                     viewModel.getDoctorById(doctorId!!)
+                }
+            }
+        }
+
+        val userId = UserIdPref(this).get()
+        viewModel.getConsultation(doctorId, userId)
+        viewModel.getConsultationState.observe(this) {state ->
+            when(state) {
+                is ResultState.Loading -> {
+                    binding.pbLoading.visibility = View.VISIBLE
+                    binding.rvChat.visibility = View.GONE
+                }
+                is ResultState.Success -> {
+                    consultationId = state.data.id
+                    viewModel.getMessage(consultationId!!)
+                }
+                is ResultState.Error -> {
+                    viewModel.createConsultation(doctorId, userId)
+                }
+            }
+        }
+
+        adapter = ChatConsultationAdapter(userId)
+
+        viewModel.postConsultationState.observe(this) {state ->
+            when(state) {
+                is ResultState.Loading -> {
+
+                }
+                is ResultState.Success -> {
+                    viewModel.getConsultation(doctorId, userId)
+                }
+                is ResultState.Error -> {
+                    viewModel.getConsultation(doctorId, userId)
+                }
+            }
+        }
+
+        viewModel.getMessageState.observe(this) {state ->
+            when(state) {
+                is ResultState.Loading -> {
+
+                }
+                is ResultState.Success -> {
+                    adapter.set(state.data)
+                    binding.rvChat.adapter = adapter
+                    binding.pbLoading.visibility = View.GONE
+                    binding.rvChat.visibility = View.VISIBLE
+                }
+                is ResultState.Error -> {
+                    binding.pbLoading.visibility = View.GONE
+                    binding.rvChat.visibility = View.VISIBLE
                 }
             }
         }

@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         window.navigationBarColor = ContextCompat.getColor(this, R.color.primary)
+
         showFragment(HomeFragment())
 
         binding.bottomNav.itemActiveIndex = 0
