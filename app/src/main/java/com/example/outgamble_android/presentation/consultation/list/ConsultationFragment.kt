@@ -9,9 +9,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.outgamble_android.R
 import com.example.outgamble_android.data.state.ResultState
+import com.example.outgamble_android.databinding.ActivityConsultationHistoryBinding
 import com.example.outgamble_android.databinding.FragmentConsultationBinding
 import com.example.outgamble_android.presentation.adapter.DoctorAdapter
 import com.example.outgamble_android.presentation.consultation.chating.ConsultationChatingActivity
+import com.example.outgamble_android.presentation.consultation.history.ConsultationHistoryActivity
 import com.example.outgamble_android.util.IntentHelper
 
 class ConsultationFragment : Fragment() {
@@ -29,6 +31,10 @@ class ConsultationFragment : Fragment() {
         _binding = FragmentConsultationBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[ConsultationViewModel::class.java]
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
+
+        binding.btnHistory.setOnClickListener {
+            IntentHelper.navigate(requireActivity(), ConsultationHistoryActivity::class.java)
+        }
 
         adapter = DoctorAdapter {doctor ->
             val bundle = Bundle().apply {

@@ -16,6 +16,7 @@ import java.util.UUID
 class ConsultationRepository {
     private val consultationDb = FirebaseHelper.getDb().getReference("consultations")
     private val consultationMessageDb = FirebaseHelper.getDb().getReference("consultations_message")
+    private val consultationHistoryDb = FirebaseHelper.getDb().getReference("consultation_last_message")
 
     fun get(doctorId: String, userId: String, callback: (ResultState<Consultation>) -> Unit) {
         callback(ResultState.Loading)
@@ -58,7 +59,7 @@ class ConsultationRepository {
 
     fun getMessage(consutationId: String, callback: (ResultState<List<ConsultationMessage>>) -> Unit) {
         callback(ResultState.Loading)
-        consultationMessageDb.child(consutationId).addListenerForSingleValueEvent(object : ValueEventListener {
+        consultationMessageDb.orderByChild("consultationId").equalTo(consutationId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = mutableListOf<ConsultationMessage>()
 
@@ -66,7 +67,6 @@ class ConsultationRepository {
                     val message = snap.getValue(ConsultationMessage::class.java)
                     if (message != null) list.add(message)
                 }
-                if (list.isEmpty()) return callback(ResultState.Error("err"))
                 callback(ResultState.Success(list))
             }
 
@@ -76,14 +76,14 @@ class ConsultationRepository {
         })
     }
 
-    fun sendMessage(consutationId: String, senderId: String, message: String, callback: (ResultState<String>) -> Unit) {
+    fun sendMessage(consultationId: String, senderId: String, text: String, callback: (ResultState<String>) -> Unit) {
         callback(ResultState.Loading)
-        val id = consultationMessageDb.push().key ?: UUID.randomUUID().toString()
+        val id = consultationMessageDb.child(consultationId).push().key ?: UUID.randomUUID().toString()
         val message = ConsultationMessage(
             id = id,
-            consultationId = consutationId,
+            consultationId = consultationId,
             senderId = senderId,
-            message = message
+            message = text
         )
 
         consultationMessageDb.child(id).setValue(message)
@@ -92,6 +92,20 @@ class ConsultationRepository {
             }
             .addOnFailureListener {
                 callback(ResultState.Error("err"))
+            }
+    }
+
+    fun updateMessage(consultationId: String, senderId: String, text: String, callback: (ResultState<String>) -> Unit) {
+        val lastMessage = mapOf(
+            "message" to text,
+            "senderId" to senderId,
+            "createdAt" to System.currentTimeMillis()
+        )
+
+        consultationHistoryDb.child(consultationId)
+            .setValue(lastMessage)
+            .addOnCompleteListener {
+                callback(ResultState.Success(""))
             }
     }
 }

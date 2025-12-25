@@ -31,7 +31,7 @@ class ConsultationChatingActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
@@ -104,7 +104,7 @@ class ConsultationChatingActivity : AppCompatActivity() {
 
                 }
                 is ResultState.Success -> {
-                    adapter.set(state.data)
+                    adapter.set(state.data.sortedBy { x -> x.createdAt })
                     binding.rvChat.adapter = adapter
                     binding.pbLoading.visibility = View.GONE
                     binding.rvChat.visibility = View.VISIBLE
@@ -112,6 +112,29 @@ class ConsultationChatingActivity : AppCompatActivity() {
                 is ResultState.Error -> {
                     binding.pbLoading.visibility = View.GONE
                     binding.rvChat.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        binding.btnSend.setOnClickListener {
+            viewModel.sendMessage(consultationId!!, userId, binding.etMessage.text.toString())
+        }
+
+        viewModel.sendMessageState.observe(this) {state ->
+            when(state) {
+                is ResultState.Loading -> {
+                    binding.pbLoadingChat.visibility = View.VISIBLE
+                    binding.btnSend.visibility = View.GONE
+                }
+                is ResultState.Success -> {
+                    viewModel.updateLastMessage(consultationId!!, userId, binding.etMessage.text.toString())
+                    binding.etMessage.text.clear()
+                    binding.pbLoadingChat.visibility = View.GONE
+                    binding.btnSend.visibility = View.VISIBLE
+                }
+                is ResultState.Error -> {
+                    binding.pbLoadingChat.visibility = View.GONE
+                    binding.btnSend.visibility = View.VISIBLE
                 }
             }
         }
