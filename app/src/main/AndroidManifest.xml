@@ -31,14 +31,11 @@
             android:exported="false" />
         <activity
             android:name=".presentation.consultation.chating.ConsultationChatingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".presentation.splash.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.auth.AuthActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,8 +43,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".presentation.auth.AuthActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.outgamble_android.MainActivity
 import com.example.outgamble_android.R
+import com.example.outgamble_android.data.local.FullnamePref
 import com.example.outgamble_android.presentation.auth.AuthActivity
+import com.example.outgamble_android.util.IntentHelper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -25,9 +28,11 @@ class SplashActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             delay(3000)
-            val intent = Intent(this@SplashActivity, AuthActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.zoom_fade_in, R.anim.zoom_fade_out)
+            if (FullnamePref(this@SplashActivity).get() != "")
+                IntentHelper.navigate(this@SplashActivity, MainActivity::class.java)
+            else
+                IntentHelper.navigate(this@SplashActivity, AuthActivity::class.java)
+
             finish()
         }
     }

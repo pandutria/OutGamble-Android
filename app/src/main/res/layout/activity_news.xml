@@ -50,10 +50,26 @@
 
     </LinearLayout>
 
-    <WebView
-        android:id="@+id/webNews"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header"/>
+        android:layout_below="@id/header">
+
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primary"
+            />
+
+        <WebView
+            android:id="@+id/webNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+
+
 
 </RelativeLayout>

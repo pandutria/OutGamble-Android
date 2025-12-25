@@ -18,21 +18,16 @@ class NewsRepository {
 
                 for (newsSnap in snapshot.children) {
                     val news = newsSnap.getValue(News::class.java)
-                    if (news != null) {
-                        newsList.add(news)
-                    }
+                    if (news != null) newsList.add(news)
                 }
 
-                if (newsList.isEmpty()) {
-                    callback(ResultState.Error("err"))
-                    return
-                }
+                if (newsList.isEmpty()) return callback(ResultState.Error("err"))
 
                 callback(ResultState.Success(newsList))
             }
 
             override fun onCancelled(error: DatabaseError) {
-                callback(ResultState.Error(error.toString()))
+                callback(ResultState.Error(error.message))
             }
         })
     }

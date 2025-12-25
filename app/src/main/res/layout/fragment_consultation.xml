@@ -61,82 +61,29 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="15dp"
-                android:paddingTop="12dp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/layoutUsername"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="@dimen/size_45"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_input_selected"
-                    android:paddingHorizontal="20dp"
-                    >
+                <ProgressBar
+                    android:id="@+id/pbLoading"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/primary"
+                    />
 
-                    <ImageView
-                        android:layout_width="@dimen/size_15"
-                        android:layout_height="@dimen/size_15"
-                        android:src="@drawable/ic_search" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDoctor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_doctor"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:overScrollMode="never"
+                    android:paddingVertical="5dp"
+                    android:scrollbars="none"/>
 
-                    <View
-                        android:layout_width="0.7dp"
-                        android:layout_height="@dimen/size_20"
-                        android:layout_marginLeft="@dimen/spacing_15"
-                        android:background="@color/textSecondary" />
-
-                    <EditText
-                        android:id="@+id/etUsername"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/poppins_regular"
-                        android:hint="Cari psikolog..."
-                        android:paddingLeft="@dimen/spacing_15"
-                        android:maxLines="1"
-                        android:inputType="text"
-                        android:textColor="@color/textSecondary"
-                        android:textColorHint="@color/textThirdtinary"
-                        android:textCursorDrawable="@color/textSecondary"
-                        android:textSize="@dimen/text_13" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/size_45"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_input_selected"
-                    android:paddingHorizontal="15dp"
-                    android:layout_marginLeft="12dp"
-                    >
-                    
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chating"/>
-                    
-                    
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_doctor"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:overScrollMode="never"
-                android:paddingVertical="5dp"
-                android:scrollbars="none"/>
+            </FrameLayout>
 
         </LinearLayout>
 

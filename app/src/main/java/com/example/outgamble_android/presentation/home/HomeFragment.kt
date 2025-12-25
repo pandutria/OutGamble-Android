@@ -15,6 +15,7 @@ import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.FragmentHomeBinding
 import com.example.outgamble_android.presentation.adapter.NewsAdapter
 import com.example.outgamble_android.presentation.news.NewsActivity
+import com.example.outgamble_android.util.IntentHelper
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -36,9 +37,10 @@ class HomeFragment : Fragment() {
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.primary)
 
         newsAdapter = NewsAdapter { news ->
-            val intent = Intent(requireActivity(), NewsActivity::class.java)
-            intent.putExtra("link", news.link)
-            startActivity(intent)
+            val bundle = Bundle().apply {
+                putString("link", news.link)
+            }
+            IntentHelper.navigate(requireActivity(), NewsActivity::class.java, bundle)
         }
 
         viewModel.getNews()
@@ -56,8 +58,7 @@ class HomeFragment : Fragment() {
                     binding.rvNews.visibility = View.VISIBLE
                 }
                 is ResultState.Error -> {
-                    binding.pbLoading.visibility = View.VISIBLE
-                    binding.rvNews.visibility = View.GONE
+                    viewModel.getNews()
                 }
             }
         }

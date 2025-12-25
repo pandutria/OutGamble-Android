@@ -5,56 +5,61 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.outgamble_android.R
+import com.example.outgamble_android.data.state.ResultState
+import com.example.outgamble_android.databinding.FragmentConsultationBinding
+import com.example.outgamble_android.presentation.adapter.DoctorAdapter
+import com.example.outgamble_android.presentation.consultation.chating.ConsultationChatingActivity
+import com.example.outgamble_android.util.IntentHelper
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ConsultationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ConsultationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentConsultationBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var viewModel: ConsultationViewModel
+    private lateinit var adapter: DoctorAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultation, container, false)
-    }
+        _binding = FragmentConsultationBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider(this)[ConsultationViewModel::class.java]
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ConsultationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ConsultationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        adapter = DoctorAdapter {doctor ->
+            val bundle = Bundle().apply {
+                putString("id", doctor.id)
+                putString("name", doctor.name)
+                putString("image", doctor.image)
+            }
+            IntentHelper.navigate(requireActivity(), ConsultationChatingActivity::class.java, bundle)
+        }
+
+        viewModel.get()
+        viewModel.doctorState.observe(viewLifecycleOwner) {state ->
+            when(state) {
+                is ResultState.Loading -> {
+                    binding.pbLoading.visibility = View.VISIBLE
+                    binding.rvDoctor.visibility = View.GONE
+                }
+                is ResultState.Success -> {
+                    adapter.set(state.data)
+                    binding.rvDoctor.adapter = adapter
+
+                    binding.pbLoading.visibility = View.GONE
+                    binding.rvDoctor.visibility = View.VISIBLE
+                }
+                is ResultState.Error -> {
+                    viewModel.get()
                 }
             }
+        }
+
+
+        return binding.root
     }
 }

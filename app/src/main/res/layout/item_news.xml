@@ -40,14 +40,20 @@
             android:justificationMode="inter_word"
             android:fontFamily="@font/ptsans_regular"/>
 
+
     </LinearLayout>
     
-    <com.appbroker.roundedimageview.RoundedImageView
-        android:id="@+id/image"
+    <androidx.cardview.widget.CardView
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:radius="5dp"
-        android:src="@drawable/example_news"/>
+        app:cardCornerRadius="5dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

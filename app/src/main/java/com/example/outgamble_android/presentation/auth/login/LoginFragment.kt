@@ -19,6 +19,7 @@ import com.example.outgamble_android.databinding.FragmentLoginBinding
 import com.example.outgamble_android.presentation.auth.register.RegisterViewModel
 import com.example.outgamble_android.util.BackPressHelper
 import com.example.outgamble_android.util.ClearFocusHelper
+import com.example.outgamble_android.util.IntentHelper
 import com.example.outgamble_android.util.ToastHelper
 
 
@@ -69,7 +70,8 @@ class LoginFragment : Fragment() {
                     ToastHelper.success(requireContext(), "Masuk Berhasil", ContextCompat.getString(requireContext(), R.string.success_login))
 
                     FullnamePref(requireContext()).save(state.data.fullname)
-                    startActivity(Intent(requireActivity(), MainActivity::class.java))
+                    IntentHelper.navigate(requireActivity(), MainActivity::class.java)
+                    requireActivity().finish()
                 }
                 is ResultState.Error -> {
                     binding.pbLoading.visibility = View.GONE
