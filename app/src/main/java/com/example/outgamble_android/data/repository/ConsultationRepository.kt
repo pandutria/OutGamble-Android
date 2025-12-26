@@ -3,6 +3,7 @@ package com.example.outgamble_android.data.repository
 import androidx.core.app.NotificationCompat.MessagingStyle.Message
 import com.bumptech.glide.disklrucache.DiskLruCache.Value
 import com.example.outgamble_android.data.model.Consultation
+import com.example.outgamble_android.data.model.ConsultationHistory
 import com.example.outgamble_android.data.model.ConsultationMessage
 import com.example.outgamble_android.data.model.Doctor
 import com.example.outgamble_android.data.state.ResultState
@@ -17,6 +18,7 @@ class ConsultationRepository {
     private val consultationDb = FirebaseHelper.getDb().getReference("consultations")
     private val consultationMessageDb = FirebaseHelper.getDb().getReference("consultations_message")
     private val consultationHistoryDb = FirebaseHelper.getDb().getReference("consultation_last_message")
+    private val doctorDb = FirebaseHelper.getDb().getReference("doctors")
 
     fun get(doctorId: String, userId: String, callback: (ResultState<Consultation>) -> Unit) {
         callback(ResultState.Loading)
@@ -108,4 +110,90 @@ class ConsultationRepository {
                 callback(ResultState.Success(""))
             }
     }
+
+    fun getHistory(
+        userId: String,
+        callback: (ResultState<List<ConsultationHistory>>) -> Unit
+    ) {
+        callback(ResultState.Loading)
+
+        consultationDb
+            .orderByChild("userId")
+            .equalTo(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val list = mutableListOf<ConsultationHistory>()
+                    val total = snapshot.childrenCount.toInt()
+                    var finished = 0
+
+                    if (total == 0) {
+                        callback(ResultState.Success(emptyList()))
+                        return
+                    }
+
+                    for (snap in snapshot.children) {
+                        val consultation = snap.getValue(Consultation::class.java) ?: continue
+
+                        doctorDb
+                            .orderByChild("id")
+                            .equalTo(consultation.doctorId)
+                            .limitToFirst(1)
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+
+                                override fun onDataChange(docSnap: DataSnapshot) {
+                                    val doctor =
+                                        docSnap.children.firstOrNull()
+                                            ?.getValue(Doctor::class.java)
+                                            ?: Doctor()
+
+                                    consultationMessageDb
+                                        .orderByChild("consultationId")
+                                        .equalTo(consultation.id)
+                                        .addListenerForSingleValueEvent(object : ValueEventListener {
+
+                                            override fun onDataChange(msgSnap: DataSnapshot) {
+                                                var lastMessage = ""
+                                                var lastTime = 0L
+
+                                                for (child in msgSnap.children) {
+                                                    val msg = child.getValue(ConsultationMessage::class.java)
+                                                    if (msg != null && msg.createdAt > lastTime) {
+                                                        lastTime = msg.createdAt
+                                                        lastMessage = msg.message
+                                                    }
+                                                }
+
+                                                list.add(
+                                                    ConsultationHistory(
+                                                        doctor = doctor,
+                                                        lastMessage = lastMessage
+                                                    )
+                                                )
+
+                                                finished++
+                                                if (finished == total) {
+                                                    callback(ResultState.Success(list))
+                                                }
+                                            }
+
+                                            override fun onCancelled(error: DatabaseError) {
+                                                callback(ResultState.Error(error.message))
+                                            }
+                                        })
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    callback(ResultState.Error(error.message))
+                                }
+                            })
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(ResultState.Error(error.message))
+                }
+            })
+    }
+
 }

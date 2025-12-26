@@ -9,6 +9,7 @@
     >
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:scaleType="centerCrop"
@@ -23,6 +24,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dr. Adi Wijaya Tarigan"
@@ -33,6 +35,7 @@
             android:textColor="@color/textSecondary"/>
 
         <TextView
+            android:id="@+id/tvLastMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hi, how are you? i hope your happy fvdvdfvdf"
