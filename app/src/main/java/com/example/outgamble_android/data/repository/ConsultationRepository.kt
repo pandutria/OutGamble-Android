@@ -97,20 +97,6 @@ class ConsultationRepository {
             }
     }
 
-    fun updateMessage(consultationId: String, senderId: String, text: String, callback: (ResultState<String>) -> Unit) {
-        val lastMessage = mapOf(
-            "message" to text,
-            "senderId" to senderId,
-            "createdAt" to System.currentTimeMillis()
-        )
-
-        consultationHistoryDb.child(consultationId)
-            .setValue(lastMessage)
-            .addOnCompleteListener {
-                callback(ResultState.Success(""))
-            }
-    }
-
     fun getHistory(
         userId: String,
         callback: (ResultState<List<ConsultationHistory>>) -> Unit

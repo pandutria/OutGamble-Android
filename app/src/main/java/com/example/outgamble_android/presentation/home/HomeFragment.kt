@@ -17,6 +17,7 @@ import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.FragmentHomeBinding
 import com.example.outgamble_android.presentation.adapter.NewsAdapter
 import com.example.outgamble_android.presentation.news.NewsActivity
+import com.example.outgamble_android.presentation.report.ReportsActivity
 import com.example.outgamble_android.util.IntentHelper
 
 class HomeFragment : Fragment() {
@@ -37,6 +38,10 @@ class HomeFragment : Fragment() {
         binding.tvFullname.text = "Hi, ${FullnamePref(requireContext()).get()}"
 
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.primary)
+
+        binding.btnReport.setOnClickListener {
+            IntentHelper.navigate(requireActivity(), ReportsActivity::class.java)
+        }
 
         newsAdapter = NewsAdapter { news ->
             val bundle = Bundle().apply {

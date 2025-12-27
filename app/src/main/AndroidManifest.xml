@@ -4,16 +4,29 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/app_logo"
+        android:label="OutGamble"
+        android:roundIcon="@drawable/app_logo"
+        android:name=".di.MyApp"
         android:supportsRtl="true"
         android:theme="@style/Theme.OutGambleAndroid"
         tools:targetApi="31">
+        <activity
+            android:name=".presentation.report.sites.ReportsSiteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.report.location.ReportsLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.report.ReportsActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.news.NewsActivity"
             android:exported="false" />
@@ -32,10 +45,10 @@
         <activity
             android:name=".presentation.consultation.chating.ConsultationChatingActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".presentation.splash.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,10 +58,10 @@
         <activity
             android:name=".presentation.auth.AuthActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

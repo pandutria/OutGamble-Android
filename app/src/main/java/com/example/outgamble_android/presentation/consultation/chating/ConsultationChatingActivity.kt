@@ -127,7 +127,6 @@ class ConsultationChatingActivity : AppCompatActivity() {
                     binding.btnSend.visibility = View.GONE
                 }
                 is ResultState.Success -> {
-                    viewModel.updateLastMessage(consultationId!!, userId, binding.etMessage.text.toString())
                     binding.etMessage.text.clear()
                     binding.pbLoadingChat.visibility = View.GONE
                     binding.btnSend.visibility = View.VISIBLE

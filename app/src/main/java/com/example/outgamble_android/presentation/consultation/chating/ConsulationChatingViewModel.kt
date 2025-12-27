@@ -29,9 +29,6 @@ class ConsulationChatingViewModel: ViewModel() {
     private val _sendMessageState = MutableLiveData<ResultState<String>>()
     val sendMessageState: LiveData<ResultState<String>> get() = _sendMessageState
 
-    private val _updateMessageSatate = MutableLiveData<ResultState<String>>()
-    val updateMessageSatate: LiveData<ResultState<String>> get() = _updateMessageSatate
-
     fun getDoctorById(id: String) {
         doctorRepository.getById(id) {
             _doctorState.postValue(it)
@@ -59,12 +56,6 @@ class ConsulationChatingViewModel: ViewModel() {
     fun sendMessage(consutationId: String, senderId: String, message: String) {
         consultationRepository.sendMessage(consutationId, senderId, message) {
             _sendMessageState.postValue(it)
-        }
-    }
-
-    fun updateLastMessage(consultationId: String, senderId: String, text: String) {
-        consultationRepository.updateMessage(consultationId, senderId, text) {
-            _updateMessageSatate.postValue(it)
         }
     }
 }
