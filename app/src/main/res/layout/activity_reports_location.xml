@@ -324,7 +324,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="75dp"
             android:background="@color/bg">
 
             <ProgressBar
@@ -343,6 +343,7 @@
                 android:text="Kirim Laporan"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
+                android:layout_gravity="center"
                 app:cornerRadius="8dp"
                 android:textSize="14sp"
                 android:backgroundTint="@color/primary"/>

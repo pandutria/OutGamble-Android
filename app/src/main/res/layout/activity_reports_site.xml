@@ -82,7 +82,7 @@
                 android:background="@color/textSecondary" />
 
             <EditText
-                android:id="@+id/etUsername"
+                android:id="@+id/etLink"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -130,6 +130,7 @@
                 android:background="@color/textSecondary" />
 
             <EditText
+                android:id="@+id/etPlatform"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -177,6 +178,7 @@
                 android:background="@color/textSecondary" />
 
             <EditText
+                android:id="@+id/etDate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -226,7 +228,7 @@
                 android:background="@color/textSecondary" />
 
             <EditText
-                android:id="@+id/etDate"
+                android:id="@+id/etDesc"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -263,7 +265,9 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp">
+            android:layout_height="75dp"
+            android:background="@color/bg"
+            >
 
             <ProgressBar
                 android:id="@+id/pbLoading"
@@ -275,13 +279,14 @@
                 />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSend"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:text="Kirim Laporan"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="10dp"
                 app:cornerRadius="8dp"
                 android:textSize="14sp"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/primary"/>
 
         </FrameLayout>

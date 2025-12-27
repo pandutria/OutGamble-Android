@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.outgamble_android.R
 import com.example.outgamble_android.databinding.ActivityReportsBinding
 import com.example.outgamble_android.presentation.report.location.ReportsLocationActivity
+import com.example.outgamble_android.presentation.report.sites.ReportsSiteActivity
 import com.example.outgamble_android.util.IntentHelper
 
 class ReportsActivity : AppCompatActivity() {
@@ -32,6 +33,10 @@ class ReportsActivity : AppCompatActivity() {
 
         binding.btnLocation.setOnClickListener {
             IntentHelper.navigate(this, ReportsLocationActivity::class.java)
+        }
+
+        binding.btnSites.setOnClickListener {
+            IntentHelper.navigate(this, ReportsSiteActivity::class.java)
         }
     }
 

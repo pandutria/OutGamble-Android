@@ -23,7 +23,8 @@ class ReportRepository {
             location = location,
             date = date,
             description = desc,
-            userId = userId
+            userId = userId,
+            category = "location"
         )
 
         db.child(id).setValue(report)
@@ -46,7 +47,8 @@ class ReportRepository {
             date = date,
             platform = platform,
             description = desc,
-            userId = userId
+            userId = userId,
+            category = "site"
         )
 
         db.child(id).setValue(report)
