@@ -50,6 +50,8 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:5.0.5")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.cloudinary:cloudinary-android:2.5.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

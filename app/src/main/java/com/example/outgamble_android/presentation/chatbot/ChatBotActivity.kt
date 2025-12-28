@@ -1,25 +1,22 @@
-package com.example.outgamble_android.presentation.report
+package com.example.outgamble_android.presentation.chatbot
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.outgamble_android.R
-import com.example.outgamble_android.databinding.ActivityReportsBinding
-import com.example.outgamble_android.presentation.report.location.ReportsLocationActivity
-import com.example.outgamble_android.presentation.report.sites.ReportsSiteActivity
+import com.example.outgamble_android.databinding.ActivityChatBotBinding
+import com.example.outgamble_android.presentation.chatbot.chating.ChatBotChatingActivity
 import com.example.outgamble_android.util.IntentHelper
 
-class ReportsActivity : AppCompatActivity() {
-    private var _binding: ActivityReportsBinding? = null
+class ChatBotActivity : AppCompatActivity() {
+    private var _binding: ActivityChatBotBinding? = null
     private val binding get() = _binding!!
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        _binding = ActivityReportsBinding.inflate(layoutInflater)
+        _binding = ActivityChatBotBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -27,16 +24,12 @@ class ReportsActivity : AppCompatActivity() {
             insets
         }
 
+        binding.btnStart.setOnClickListener {
+            IntentHelper.navigate(this, ChatBotChatingActivity::class.java)
+        }
+
         binding.btnBack.setOnClickListener {
             IntentHelper.finish(this)
-        }
-
-        binding.btnLocation.setOnClickListener {
-            IntentHelper.navigate(this, ReportsLocationActivity::class.java)
-        }
-
-        binding.btnSites.setOnClickListener {
-            IntentHelper.navigate(this, ReportsSiteActivity::class.java)
         }
     }
 

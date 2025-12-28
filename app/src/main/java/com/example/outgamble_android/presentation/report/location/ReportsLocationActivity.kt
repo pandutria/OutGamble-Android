@@ -251,4 +251,9 @@ class ReportsLocationActivity : AppCompatActivity() {
         super.onBackPressed()
         IntentHelper.finish(this)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

@@ -14,6 +14,7 @@ import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.ActivityConsultationChatingBinding
 import com.example.outgamble_android.presentation.adapter.ChatConsultationAdapter
 import com.example.outgamble_android.util.IntentHelper
+import com.example.outgamble_android.util.ToastHelper
 
 class ConsultationChatingActivity : AppCompatActivity() {
     private var _binding: ActivityConsultationChatingBinding? = null
@@ -29,9 +30,19 @@ class ConsultationChatingActivity : AppCompatActivity() {
         enableEdgeToEdge()
         _binding = ActivityConsultationChatingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+//            insets
+//        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val navInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            v.setPadding(0, systemBars.top, 0, maxOf(imeInsets.bottom, navInsets.bottom))
+
             insets
         }
 
@@ -117,6 +128,11 @@ class ConsultationChatingActivity : AppCompatActivity() {
         }
 
         binding.btnSend.setOnClickListener {
+            if (binding.etMessage.text.toString() == "") {
+                ToastHelper.warning(this)
+                return@setOnClickListener
+            }
+
             viewModel.sendMessage(consultationId!!, userId, binding.etMessage.text.toString())
         }
 
@@ -142,5 +158,10 @@ class ConsultationChatingActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         IntentHelper.finish(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

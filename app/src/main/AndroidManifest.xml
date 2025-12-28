@@ -3,21 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name=".di.MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/app_logo"
         android:label="OutGamble"
         android:roundIcon="@drawable/app_logo"
-        android:name=".di.MyApp"
         android:supportsRtl="true"
         android:theme="@style/Theme.OutGambleAndroid"
         tools:targetApi="31">
+        <activity
+            android:name=".presentation.chatbot.chating.ChatBotChatingActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".presentation.chatbot.ChatBotActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.report.sites.ReportsSiteActivity"
             android:exported="false" />

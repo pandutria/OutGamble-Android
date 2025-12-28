@@ -16,6 +16,7 @@ import com.example.outgamble_android.data.model.News
 import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.FragmentHomeBinding
 import com.example.outgamble_android.presentation.adapter.NewsAdapter
+import com.example.outgamble_android.presentation.chatbot.ChatBotActivity
 import com.example.outgamble_android.presentation.news.NewsActivity
 import com.example.outgamble_android.presentation.report.ReportsActivity
 import com.example.outgamble_android.util.IntentHelper
@@ -41,6 +42,10 @@ class HomeFragment : Fragment() {
 
         binding.btnReport.setOnClickListener {
             IntentHelper.navigate(requireActivity(), ReportsActivity::class.java)
+        }
+
+        binding.btnAi.setOnClickListener {
+            IntentHelper.navigate(requireActivity(), ChatBotActivity::class.java)
         }
 
         newsAdapter = NewsAdapter { news ->

@@ -12,25 +12,25 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="15dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp">
 
         <ImageView
             android:id="@id/btnBack"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_arrow_left"
-            android:padding="5dp"/>
-        
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_left" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="7dp"
-            android:src="@drawable/example_news"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_asisten_ai_mini" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,18 +42,18 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dr. Adi Wijaya Tarigan"
                 android:fontFamily="@font/poppins_semibold"
-                android:textSize="14sp"
-                android:textColor="@color/textPrimary"/>
+                android:text="Asisten AI"
+                android:textColor="@color/textPrimary"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Spesialis Psikologi"
                 android:fontFamily="@font/poppins_light"
-                android:textSize="12sp"
-                android:textColor="@color/textThirdtinary"/>
+                android:text="chatbot"
+                android:textColor="@color/textThirdtinary"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -63,39 +63,21 @@
         android:id="@+id/headerLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:alpha="0.3"
         android:layout_below="@id/header"
-        android:background="#939CBE"/>
+        android:alpha="0.3"
+        android:background="#939CBE" />
 
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:paddingTop="5dp"
         android:layout_below="@id/headerLine"
-        android:layout_above="@id/layoutChat">
-
-        <ProgressBar
-            android:id="@+id/pbLoading"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            android:indeterminateTint="@color/primary"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvChat"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_bc_consultation_sender"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:overScrollMode="never"
-            android:paddingTop="5dp"
-            android:clipToPadding="false"
-            android:paddingBottom="5dp"
-            android:scrollbars="none"/>
-
-    </FrameLayout>
-
+        android:clipToPadding="false"
+        android:layout_above="@id/layoutChat"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_bc_consultation_sender" />
 
     <LinearLayout
         android:id="@+id/layoutChat"
@@ -107,9 +89,9 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:alpha="0.3"
             android:layout_below="@id/header"
-            android:background="#939CBE"/>
+            android:alpha="0.3"
+            android:background="#939CBE" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,22 +101,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="15dp"
-                android:paddingVertical="12dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="12dp">
 
                 <LinearLayout
                     android:id="@+id/layoutUsername"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="@dimen/size_45"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/bg_input_selected"
-                    android:paddingHorizontal="20dp"
-                    >
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp">
 
                     <ImageView
                         android:layout_width="@dimen/size_15"
@@ -155,9 +136,9 @@
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/poppins_regular"
                         android:hint="Ketik pesan..."
-                        android:paddingLeft="@dimen/spacing_15"
-                        android:maxLines="1"
                         android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/spacing_15"
                         android:textColor="@color/textSecondary"
                         android:textColorHint="@color/textThirdtinary"
                         android:textCursorDrawable="@color/textSecondary"
@@ -175,15 +156,15 @@
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:indeterminateTint="@color/primary"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <ImageButton
                         android:id="@+id/btnSend"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
+                        android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
-                        android:layout_gravity="center"
                         android:src="@drawable/btn_send" />
 
                 </FrameLayout>
