@@ -20,6 +20,7 @@ import com.example.outgamble_android.presentation.chatbot.ChatBotActivity
 import com.example.outgamble_android.presentation.detecion.DetectionActivity
 import com.example.outgamble_android.presentation.news.NewsActivity
 import com.example.outgamble_android.presentation.report.ReportsActivity
+import com.example.outgamble_android.presentation.test.TestActivity
 import com.example.outgamble_android.util.IntentHelper
 
 class HomeFragment : Fragment() {
@@ -51,6 +52,10 @@ class HomeFragment : Fragment() {
 
         binding.btnDetection.setOnClickListener {
             IntentHelper.navigate(requireActivity(), DetectionActivity::class.java)
+        }
+
+        binding.btnTest.setOnClickListener {
+            IntentHelper.navigate(requireActivity(), TestActivity::class.java)
         }
 
         newsAdapter = NewsAdapter { news ->

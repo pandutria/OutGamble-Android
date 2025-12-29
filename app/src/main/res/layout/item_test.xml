@@ -28,70 +28,56 @@
             android:textSize="14sp"/>
 
         <RadioGroup
+            android:id="@+id/rgAnswer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/rbAnswer1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tidak pernah"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="12sp"
-                android:scaleX="0.8"
-                android:minWidth="0dp"
-                android:textColor="@color/textSecondary"
-                android:minHeight="0dp"
-                android:scaleY="0.8"
                 android:paddingLeft="5dp"
-                android:layout_marginLeft="-15dp"/>
+                android:textColor="@color/radio_text_selector"
+                app:buttonTint="@color/radio_button_selector"/>
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/rbAnswer2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tidak pernah"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="12sp"
-                android:scaleX="0.8"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:scaleY="0.8"
                 android:paddingLeft="5dp"
-                android:textColor="@color/textSecondary"
-                android:layout_marginLeft="-15dp"/>
+                android:textColor="@color/radio_text_selector"
+                app:buttonTint="@color/radio_button_selector"/>
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/rbAnswer3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tidak pernah"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="12sp"
-                android:scaleX="0.8"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:textColor="@color/textSecondary"
-                android:scaleY="0.8"
                 android:paddingLeft="5dp"
-                android:layout_marginLeft="-15dp"/>
+                android:textColor="@color/radio_text_selector"
+                app:buttonTint="@color/radio_button_selector"/>
 
-            <RadioButton
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/rbAnswer4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tidak pernah"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="12sp"
-                android:scaleX="0.8"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:scaleY="0.8"
                 android:paddingLeft="5dp"
-                android:textColor="@color/textSecondary"
-                android:layout_marginLeft="-15dp"/>
+                android:textColor="@color/radio_text_selector"
+                app:buttonTint="@color/radio_button_selector"/>
 
 
         </RadioGroup>

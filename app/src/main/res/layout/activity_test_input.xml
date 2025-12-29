@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Jawab Soal"
+            android:text="Jawab Pertanyaan"
             android:textColor="@color/textPrimary"
             android:textSize="16sp" />
 
@@ -45,7 +45,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headerLine">
+        android:layout_below="@id/headerLine"
+        android:layout_above="@id/layoutButton">
 
         <ProgressBar
             android:id="@+id/pbLoading"
@@ -68,6 +69,51 @@
             android:scrollbars="none"/>
 
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.3"
+            android:layout_below="@id/header"
+            android:background="#939CBE"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/bg">
+
+            <ProgressBar
+                android:id="@+id/pbLoadingButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/primary"
+                android:visibility="gone"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@id/btnSend"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Selesaikan Kuis"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:layout_gravity="center"
+                app:cornerRadius="8dp"
+                android:textSize="14sp"
+                android:backgroundTint="@color/primary"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>
