@@ -13,6 +13,7 @@ import com.example.outgamble_android.R
 import com.example.outgamble_android.data.gemini.repsonse.GeminiChatMessage
 import com.example.outgamble_android.databinding.ActivityChatBotChatingBinding
 import com.example.outgamble_android.presentation.adapter.ChatBotAdapter
+import com.example.outgamble_android.util.ClearFocusHelper
 import com.example.outgamble_android.util.IntentHelper
 import com.example.outgamble_android.util.ToastHelper
 
@@ -38,6 +39,10 @@ class ChatBotChatingActivity : AppCompatActivity() {
             v.setPadding(0, systemBars.top, 0, maxOf(imeInsets.bottom, navInsets.bottom))
 
             insets
+        }
+
+        binding.root.setOnClickListener {
+            ClearFocusHelper.onEditText(this, binding.etMessage)
         }
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
@@ -114,8 +119,12 @@ class ChatBotChatingActivity : AppCompatActivity() {
         var index = 0
         val handler = Handler(Looper.getMainLooper())
 
-        val emptyMsg = GeminiChatMessage(message = "", isUser = false)
-        adapter.addMessage(emptyMsg)
+        val loadingMsg = GeminiChatMessage(
+            message = "Menunggu jawaban AI...",
+            isUser = false
+        )
+        adapter.addMessage(loadingMsg)
+
         val position = adapter.itemCount - 1
 
         val runnable = object : Runnable {
@@ -128,8 +137,10 @@ class ChatBotChatingActivity : AppCompatActivity() {
                 }
             }
         }
-        handler.post(runnable)
+
+        handler.postDelayed(runnable, 500)
     }
+
 
     override fun onBackPressed() {
         super.onBackPressed()

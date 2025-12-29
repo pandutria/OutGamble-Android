@@ -13,6 +13,7 @@ import com.example.outgamble_android.data.local.UserIdPref
 import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.ActivityConsultationChatingBinding
 import com.example.outgamble_android.presentation.adapter.ChatConsultationAdapter
+import com.example.outgamble_android.util.ClearFocusHelper
 import com.example.outgamble_android.util.IntentHelper
 import com.example.outgamble_android.util.ToastHelper
 
@@ -44,6 +45,10 @@ class ConsultationChatingActivity : AppCompatActivity() {
             v.setPadding(0, systemBars.top, 0, maxOf(imeInsets.bottom, navInsets.bottom))
 
             insets
+        }
+
+        binding.root.setOnClickListener {
+            ClearFocusHelper.onEditText(this, binding.etMessage)
         }
 
         viewModel = ViewModelProvider(this)[ConsulationChatingViewModel::class.java]

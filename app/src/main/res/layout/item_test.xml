@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:background="@color/white"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginBottom="5dp"
+    app:cardElevation="3dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Seberapa sering kamu berjudi dalam satu minggu?"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/textPrimary"
+            android:textSize="14sp"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbAnswer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak pernah"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="12sp"
+                android:scaleX="0.8"
+                android:minWidth="0dp"
+                android:textColor="@color/textSecondary"
+                android:minHeight="0dp"
+                android:scaleY="0.8"
+                android:paddingLeft="5dp"
+                android:layout_marginLeft="-15dp"/>
+
+            <RadioButton
+                android:id="@+id/rbAnswer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak pernah"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="12sp"
+                android:scaleX="0.8"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:scaleY="0.8"
+                android:paddingLeft="5dp"
+                android:textColor="@color/textSecondary"
+                android:layout_marginLeft="-15dp"/>
+
+            <RadioButton
+                android:id="@+id/rbAnswer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak pernah"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="12sp"
+                android:scaleX="0.8"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/textSecondary"
+                android:scaleY="0.8"
+                android:paddingLeft="5dp"
+                android:layout_marginLeft="-15dp"/>
+
+            <RadioButton
+                android:id="@+id/rbAnswer4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak pernah"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="12sp"
+                android:scaleX="0.8"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:scaleY="0.8"
+                android:paddingLeft="5dp"
+                android:textColor="@color/textSecondary"
+                android:layout_marginLeft="-15dp"/>
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

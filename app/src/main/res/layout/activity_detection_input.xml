@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="AI Deteksi Situs Judi"
+            android:textColor="@color/textPrimary"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/headerLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:alpha="0.3"
+        android:background="#939CBE" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerLine"
+        android:layout_above="@id/layoutButton"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Link Situs"
+            android:textColor="@color/textSecondary"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginTop="12dp"
+            android:textSize="@dimen/text_14"/>
+
+        <LinearLayout
+            android:id="@+id/layoutUsername"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_45"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_input_selected"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="20dp"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/size_15"
+                android:layout_height="@dimen/size_15"
+                android:src="@drawable/ic_web" />
+
+            <View
+                android:layout_width="0.7dp"
+                android:layout_height="@dimen/size_20"
+                android:layout_marginLeft="@dimen/spacing_15"
+                android:background="@color/textSecondary" />
+
+            <EditText
+                android:id="@+id/etLink"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Masukan link situs..."
+                android:paddingLeft="@dimen/spacing_15"
+                android:maxLines="1"
+                android:inputType="text"
+                android:textColor="@color/textSecondary"
+                android:textColorHint="@color/textThirdtinary"
+                android:textCursorDrawable="@color/textSecondary"
+                android:textSize="@dimen/text_13" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.3"
+            android:layout_below="@id/header"
+            android:background="#939CBE"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/bg">
+
+            <ProgressBar
+                android:id="@+id/pbLoading"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/primary"
+                android:visibility="gone"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@id/btnSend"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Lihat Analisis"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:layout_gravity="center"
+                app:cornerRadius="8dp"
+                android:textSize="14sp"
+                android:backgroundTint="@color/primary"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

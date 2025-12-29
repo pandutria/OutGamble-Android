@@ -13,6 +13,7 @@ import com.example.outgamble_android.data.local.UserIdPref
 import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.ActivityReportsSiteBinding
 import com.example.outgamble_android.presentation.report.location.ReportsLocationViewModel
+import com.example.outgamble_android.util.ClearFocusHelper
 import com.example.outgamble_android.util.IntentHelper
 import com.example.outgamble_android.util.ToastHelper
 import java.util.Calendar
@@ -34,6 +35,10 @@ class ReportsSiteActivity : AppCompatActivity() {
             insets
         }
         viewModel = ViewModelProvider(this)[ReportsSiteViewModel::class.java]
+
+        binding.root.setOnClickListener {
+            ClearFocusHelper.onEditText(this, binding.etDesc, binding.etPlatform, binding.etLink, binding.etDate)
+        }
 
         binding.etDate.isFocusable = false
         binding.etDate.isClickable = true

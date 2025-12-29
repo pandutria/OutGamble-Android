@@ -22,6 +22,7 @@ import com.example.outgamble_android.R
 import com.example.outgamble_android.data.local.UserIdPref
 import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.ActivityReportsLocationBinding
+import com.example.outgamble_android.util.ClearFocusHelper
 import com.example.outgamble_android.util.IntentHelper
 import com.example.outgamble_android.util.ToastHelper
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -66,6 +67,10 @@ class ReportsLocationActivity : AppCompatActivity() {
 
         binding.etDate.setOnClickListener {
             showDatePicker()
+        }
+
+        binding.root.setOnClickListener {
+            ClearFocusHelper.onEditText(this, binding.etDesc, binding.etLocation, binding.etDate)
         }
 
         pickImageLauncher =

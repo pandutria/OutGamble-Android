@@ -18,9 +18,24 @@
         android:theme="@style/Theme.OutGambleAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.test.input.TestInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.test.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.detecion.result.DetectionResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.detecion.input.DetectionInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.detecion.DetectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.chatbot.chating.ChatBotChatingActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".presentation.chatbot.ChatBotActivity"
             android:exported="false" />
