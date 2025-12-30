@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.outgamble_android.databinding.ActivityMainBinding
 import com.example.outgamble_android.presentation.consultation.list.ConsultationFragment
+import com.example.outgamble_android.presentation.education.EducationFragment
 import com.example.outgamble_android.presentation.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             when (index) {
                 0 -> showFragment(HomeFragment())
                 1 -> showFragment(ConsultationFragment())
+                2 -> showFragment(EducationFragment())
             }
         }
     }
