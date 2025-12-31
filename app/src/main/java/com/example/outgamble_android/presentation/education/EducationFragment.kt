@@ -11,7 +11,7 @@ import com.example.outgamble_android.R
 import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.FragmentEducationBinding
 import com.example.outgamble_android.presentation.adapter.EducationAdapter
-import com.example.outgamble_android.presentation.test.TestActivity
+import com.example.outgamble_android.presentation.education.detail.EducationDetailActivity
 import com.example.outgamble_android.util.IntentHelper
 
 class EducationFragment : Fragment() {
@@ -36,8 +36,9 @@ class EducationFragment : Fragment() {
                 putString("title", education.title)
                 putString("desc", education.desc)
                 putString("link", education.link)
+                putString("source", education.source)
             }
-            IntentHelper.navigate(requireActivity(), TestActivity::class.java, bundle)
+            IntentHelper.navigate(requireActivity(), EducationDetailActivity::class.java, bundle)
         }
 
         viewModel.get()
@@ -62,4 +63,8 @@ class EducationFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.get()
+    }
 }

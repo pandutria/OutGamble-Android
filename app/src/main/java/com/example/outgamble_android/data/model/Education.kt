@@ -5,5 +5,6 @@ data class Education(
     val title: String = "",
     val desc: String = "",
     val link: String = "",
-    val thumbnail: String = ""
+    val thumbnail: String = "",
+    val source: String = ""
 )

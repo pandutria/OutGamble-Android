@@ -11,6 +11,7 @@ import com.example.outgamble_android.databinding.ActivityMainBinding
 import com.example.outgamble_android.presentation.consultation.list.ConsultationFragment
 import com.example.outgamble_android.presentation.education.EducationFragment
 import com.example.outgamble_android.presentation.home.HomeFragment
+import com.example.outgamble_android.presentation.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                 0 -> showFragment(HomeFragment())
                 1 -> showFragment(ConsultationFragment())
                 2 -> showFragment(EducationFragment())
+                3 -> showFragment(ProfileFragment())
             }
         }
     }

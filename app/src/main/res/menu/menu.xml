@@ -15,8 +15,8 @@
 
     <item
         android:id="@+id/communityMenu"
-        android:title="Komunitas"
-        android:icon="@drawable/ic_community"
+        android:title="Edukasi"
+        android:icon="@drawable/ic_education"
         android:iconTint="@color/primary"/>
 
 
