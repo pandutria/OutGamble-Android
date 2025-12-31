@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/bg">
 
     <androidx.fragment.app.FragmentContainerView
@@ -14,7 +13,6 @@
         android:layout_height="match_parent"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/auth_nav_graph"
-        android:fitsSystemWindows="true" />
+        app:navGraph="@navigation/auth_nav_graph" />
 
 </RelativeLayout>

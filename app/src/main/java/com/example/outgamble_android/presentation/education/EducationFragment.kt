@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.outgamble_android.R
 import com.example.outgamble_android.data.state.ResultState
@@ -29,7 +30,11 @@ class EducationFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentEducationBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[EducationViewModel::class.java]
+
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
+        val insetsController = WindowInsetsControllerCompat(requireActivity().window, requireActivity().window.decorView)
+        insetsController.isAppearanceLightStatusBars = true
+        insetsController.isAppearanceLightNavigationBars = false
 
         adapter = EducationAdapter {education ->
             val bundle = Bundle().apply {
@@ -66,5 +71,7 @@ class EducationFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.get()
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
     }
+
 }

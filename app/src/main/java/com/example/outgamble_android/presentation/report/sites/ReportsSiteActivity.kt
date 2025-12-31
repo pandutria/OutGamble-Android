@@ -52,6 +52,12 @@ class ReportsSiteActivity : AppCompatActivity() {
         }
 
         binding.btnSend.setOnClickListener {
+            if (binding.etLink.toString() == "" || binding.etDate.text.toString() == ""
+                || binding.etDesc.text.toString() == "" || binding.etPlatform.text.toString() == "") {
+                ToastHelper.warning(this)
+                return@setOnClickListener
+            }
+
             val userId = UserIdPref(this).get()
             viewModel.create(binding.etLink.text.toString(), binding.etDate.text.toString(),
                 binding.etDesc.text.toString(), binding.etPlatform.text.toString(), userId)

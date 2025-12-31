@@ -28,6 +28,16 @@ class AuthActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+//            val navInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//
+//            v.setPadding(0, systemBars.top, 0, maxOf(imeInsets.bottom, navInsets.bottom))
+//
+//            insets
+//        }
     }
 
 //    override fun onBackPressed() {

@@ -14,6 +14,7 @@ import com.example.outgamble_android.data.state.ResultState
 import com.example.outgamble_android.databinding.ActivityTestInputBinding
 import com.example.outgamble_android.presentation.adapter.TestAdapter
 import com.example.outgamble_android.presentation.test.TestActivity
+import com.example.outgamble_android.presentation.test.result.TestResultActivity
 import com.example.outgamble_android.util.IntentHelper
 import com.example.outgamble_android.util.ToastHelper
 import kotlinx.serialization.builtins.serializer
@@ -73,7 +74,7 @@ class TestInputActivity : AppCompatActivity() {
                 putInt("poin", countTotal())
             }
 
-            IntentHelper.navigate(this, TestActivity::class.java, bundle)
+            IntentHelper.navigate(this, TestResultActivity::class.java, bundle)
             IntentHelper.finish(this)
         }
     }

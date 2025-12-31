@@ -17,6 +17,6 @@ class UserIdPref(context: Context) {
     }
 
     fun remove() {
-        shared.edit().remove(key).toString()
+        shared.edit().remove(key).apply()
     }
 }

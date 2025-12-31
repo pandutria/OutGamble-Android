@@ -34,27 +34,59 @@ class TestResultActivity : AppCompatActivity() {
 
         when (poin) {
             in 15..30 -> {
-                binding.tvRisk.text = "Tingkat Resiko: Rendah"
+                binding.tvRisk.text = "Tingkat Risiko: Rendah"
                 binding.tvDesc.text =
-                    "Kamu menunjukkan kontrol yang baik terhadap aktivitas perjudian. Saat ini belum terlihat tanda kecanduan yang signifikan."
+                    "Berdasarkan hasil penilaian yang dilakukan, kamu menunjukkan tingkat risiko kecanduan judi yang rendah. " +
+                            "Hal ini menandakan bahwa aktivitas perjudian yang dilakukan masih berada dalam batas wajar dan belum menunjukkan pola perilaku kompulsif. " +
+                            "Saat ini, kamu masih mampu mengendalikan frekuensi, durasi, serta pengeluaran yang berkaitan dengan perjudian. " +
+                            "Tidak ditemukan indikasi kuat bahwa aktivitas tersebut berdampak negatif terhadap kondisi keuangan, kesehatan mental, " +
+                            "atau hubungan sosial yang kamu miliki."
+
                 binding.tvRecomendation.text =
-                    "Pertahankan kebiasaan positif ini. Hindari berjudi sebagai pelarian dari stres dan tetap prioritaskan kebutuhan utama serta aktivitas sehat lainnya."
+                    "Meskipun tingkat risiko masih tergolong rendah, penting untuk tetap waspada dan menjaga pola perilaku yang sehat. " +
+                            "Disarankan untuk menetapkan batasan yang jelas terkait waktu dan dana yang digunakan untuk berjudi. " +
+                            "Hindari menjadikan perjudian sebagai sarana utama untuk mengatasi stres, tekanan emosional, atau masalah pribadi. " +
+                            "Sebagai langkah pencegahan, isi waktu luang dengan aktivitas positif seperti olahraga, kegiatan kreatif, " +
+                            "atau interaksi sosial yang mendukung kesejahteraan mental dan emosional kamu."
+
             }
 
             in 31..45 -> {
-                binding.tvRisk.text = "Tingkat Resiko: Sedang"
+                binding.tvRisk.text = "Tingkat Risiko: Sedang"
                 binding.tvDesc.text =
-                    "Terdapat beberapa tanda yang menunjukkan risiko kecanduan judi. Jika tidak dikendalikan, kondisi ini dapat berkembang menjadi masalah serius."
+                    "Hasil evaluasi menunjukkan adanya peningkatan risiko kecanduan judi pada diri kamu. " +
+                            "Beberapa indikator mengarah pada pola perilaku berjudi yang mulai sulit dikendalikan, " +
+                            "baik dari segi frekuensi, durasi, maupun jumlah uang yang dikeluarkan. " +
+                            "Pada tahap ini, aktivitas perjudian berpotensi mulai memengaruhi kestabilan emosi, " +
+                            "pengambilan keputusan keuangan, serta hubungan dengan orang-orang terdekat. " +
+                            "Jika tidak ditangani sejak dini, kondisi ini dapat berkembang menjadi kecanduan yang lebih serius."
+
                 binding.tvRecomendation.text =
-                    "Mulailah membatasi aktivitas perjudian, kelola keuangan dengan lebih ketat, dan cari dukungan dari orang terdekat."
+                    "Langkah pencegahan sangat dianjurkan untuk menghindari peningkatan risiko di masa mendatang. " +
+                            "Mulailah dengan mengurangi frekuensi berjudi dan menetapkan batas keuangan yang ketat. " +
+                            "Buatlah perencanaan keuangan yang lebih terstruktur dan transparan. " +
+                            "Selain itu, penting untuk membuka diri dan berbagi kondisi ini dengan keluarga atau teman dekat " +
+                            "agar kamu mendapatkan dukungan emosional dan pengawasan yang positif. " +
+                            "Jika diperlukan, pertimbangkan untuk mengikuti konseling ringan atau program edukasi mengenai risiko kecanduan judi."
+
             }
 
             else -> {
-                binding.tvRisk.text = "Tingkat Resiko: Tinggi"
+                binding.tvRisk.text = "Tingkat Risiko: Tinggi"
                 binding.tvDesc.text =
-                    "Hasil menunjukkan risiko kecanduan judi yang tinggi. Aktivitas judi kemungkinan sudah berdampak pada keuangan, emosi, atau kehidupan sosial kamu."
+                    "Berdasarkan hasil analisis, kamu berada pada tingkat risiko kecanduan judi yang tinggi. " +
+                            "Hal ini menunjukkan bahwa aktivitas perjudian kemungkinan telah menjadi perilaku yang bersifat kompulsif " +
+                            "dan sulit untuk dikendalikan. Dampak negatif dari kebiasaan ini dapat mencakup masalah keuangan yang serius, " +
+                            "tekanan emosional, gangguan kesehatan mental, serta penurunan kualitas hubungan sosial dan keluarga. " +
+                            "Tanpa adanya intervensi yang tepat, risiko kerugian yang lebih besar dapat terus meningkat."
+
                 binding.tvRecomendation.text =
-                    "Segera hentikan aktivitas perjudian dan cari bantuan profesional. Dukungan dari keluarga dan lingkungan sangat disarankan."
+                    "Disarankan untuk segera menghentikan seluruh aktivitas perjudian dan mengambil langkah pemulihan secara serius. " +
+                            "Carilah bantuan profesional seperti psikolog, konselor, atau layanan rehabilitasi yang berpengalaman dalam menangani kecanduan judi. " +
+                            "Dukungan dari keluarga, pasangan, dan lingkungan sekitar sangat penting dalam proses pemulihan. " +
+                            "Selain itu, lakukan perubahan gaya hidup dengan menjauhi pemicu perjudian dan menggantinya dengan aktivitas yang sehat, " +
+                            "produktif, serta mendukung kesejahteraan jangka panjang kamu."
+
             }
         }
     }

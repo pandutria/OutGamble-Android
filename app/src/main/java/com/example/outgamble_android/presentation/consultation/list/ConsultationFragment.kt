@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.outgamble_android.R
 import com.example.outgamble_android.data.state.ResultState
@@ -30,7 +31,11 @@ class ConsultationFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentConsultationBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[ConsultationViewModel::class.java]
+
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
+        val insetsController = WindowInsetsControllerCompat(requireActivity().window, requireActivity().window.decorView)
+        insetsController.isAppearanceLightStatusBars = true
+        insetsController.isAppearanceLightNavigationBars = false
 
         binding.btnHistory.setOnClickListener {
             IntentHelper.navigate(requireActivity(), ConsultationHistoryActivity::class.java)
@@ -67,5 +72,10 @@ class ConsultationFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireActivity(), R.color.bg)
     }
 }

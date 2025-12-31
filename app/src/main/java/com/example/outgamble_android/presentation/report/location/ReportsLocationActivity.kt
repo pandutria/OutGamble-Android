@@ -123,6 +123,8 @@ class ReportsLocationActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            binding.pbLoading.visibility = View.VISIBLE
+            binding.btnSend.visibility = View.GONE
             uploadImage(imageUri!!)
         }
 

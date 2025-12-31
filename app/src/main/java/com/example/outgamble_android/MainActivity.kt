@@ -16,6 +16,7 @@ import com.example.outgamble_android.presentation.profile.ProfileFragment
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                 1 -> showFragment(ConsultationFragment())
                 2 -> showFragment(EducationFragment())
                 3 -> showFragment(ProfileFragment())
+                4 -> showFragment(ProfileFragment())
             }
         }
     }

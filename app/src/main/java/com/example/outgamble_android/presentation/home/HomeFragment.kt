@@ -1,6 +1,7 @@
 package com.example.outgamble_android.presentation.home
 
 import android.content.Intent
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker.checkSelfPermission
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.outgamble_android.R
 import com.example.outgamble_android.data.local.FullnamePref
@@ -30,6 +32,13 @@ import com.example.outgamble_android.presentation.test.TestActivity
 import com.example.outgamble_android.util.IntentHelper
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import java.text.SimpleDateFormat
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -54,7 +63,14 @@ class HomeFragment : Fragment() {
 
         binding.tvFullname.text = "Hi, ${FullnamePref(requireContext()).get()}"
 
-        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.primary)
+        requireActivity().window.statusBarColor =
+            ContextCompat.getColor(requireContext(), R.color.primary)
+        val insetsController = WindowInsetsControllerCompat(
+            requireActivity().window,
+            requireActivity().window.decorView
+        )
+        insetsController.isAppearanceLightStatusBars = false
+        insetsController.isAppearanceLightNavigationBars = false
 
         binding.btnReport.setOnClickListener {
             IntentHelper.navigate(requireActivity(), ReportsActivity::class.java)
@@ -82,12 +98,13 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.getNews()
-        viewModel.newsState.observe(viewLifecycleOwner) {state ->
-            when(state) {
+        viewModel.newsState.observe(viewLifecycleOwner) { state ->
+            when (state) {
                 is ResultState.Loading -> {
                     binding.pbLoading.visibility = View.VISIBLE
                     binding.rvNews.visibility = View.GONE
                 }
+
                 is ResultState.Success -> {
                     newsAdapter.set(state.data)
                     binding.rvNews.adapter = newsAdapter
@@ -95,6 +112,7 @@ class HomeFragment : Fragment() {
                     binding.pbLoading.visibility = View.GONE
                     binding.rvNews.visibility = View.VISIBLE
                 }
+
                 is ResultState.Error -> {
                     viewModel.getNews()
                 }
@@ -105,15 +123,86 @@ class HomeFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                 if (isGranted) {
                     getCurrentLocation()
-                }
-                else Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT)
+                } else Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT)
                     .show()
             }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         getCurrentLocation()
+        setCurrentTime()
+
 
         return binding.root
+    }
+
+    private fun generateDetectionCount(lat: Double, lng: Double): Int {
+        val seed = (lat * 1000 + lng * 1000).toInt()
+        val random = kotlin.random.Random(seed)
+
+        return random.nextInt(80, 250)
+    }
+
+    private fun setDetectionCount(lat: Double, lng: Double, location: String) {
+        val count = generateDetectionCount(lat, lng)
+        val status = getStatusFromCount(count)
+
+        binding.tvDetection.text = "$count Judi Terdeteksi"
+        binding.tvStatus.text = status
+    }
+
+    private fun setLocationName(lat: Double, lng: Double) {
+        try {
+            val geocoder = Geocoder(requireContext(), Locale("id", "ID"))
+            val addresses = geocoder.getFromLocation(lat, lng, 1)
+
+            if (!addresses.isNullOrEmpty()) {
+                val address = addresses[0]
+
+                val district = address.subLocality
+                val city = address.locality
+                val province = address.adminArea
+                val locationText = when {
+                    !district.isNullOrEmpty() && !city.isNullOrEmpty() ->
+                        "$district, $city"
+
+                    !city.isNullOrEmpty() ->
+                        city
+
+                    !province.isNullOrEmpty() ->
+                        province
+
+                    else ->
+                        "Lokasi tidak diketahui"
+                }
+
+                binding.tvLocation.text = locationText
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            binding.tvLocation.text = "Lokasi tidak tersedia"
+        }
+    }
+
+    private fun getStatusFromCount(count: Int): String {
+        return when {
+            count < 100 -> "Rendah"
+            count < 180 -> "Sedang"
+            else -> "Tinggi"
+        }
+    }
+
+    private val timeRunnable = object : Runnable {
+        override fun run() {
+            setCurrentTime()
+            binding.tvTime.postDelayed(this, 60_000)
+        }
+    }
+
+    private fun setCurrentTime() {
+        val sdf = SimpleDateFormat("HH:mm", Locale("id", "ID"))
+        sdf.timeZone = TimeZone.getTimeZone("Asia/Jakarta")
+        val time = sdf.format(Date())
+        binding.tvTime.text = "$time WIB"
     }
 
     private fun showMap() {
@@ -188,8 +277,16 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getCurrentLocation()
+        binding.tvTime.post(timeRunnable)
+        requireActivity().window.statusBarColor =
+            ContextCompat.getColor(requireActivity(), R.color.primary)
     }
+
+    override fun onPause() {
+        super.onPause()
+        binding.tvTime.removeCallbacks(timeRunnable)
+    }
+
 
     private fun getCurrentLocation() {
         if (
@@ -212,15 +309,18 @@ class HomeFragment : Fragment() {
 
                     lat = lats
                     lng = lngs
+                    setLocationName(lat, lng)
+                    setDetectionCount(lat, lng, binding.tvLocation.text.toString())
                     showMap()
                 } else {
-                    Toast.makeText(requireContext(), "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Lokasi tidak tersedia", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding =   null
+        _binding = null
     }
 }
