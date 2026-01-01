@@ -47,7 +47,7 @@ class AuthRepository {
                         return
                     }
                 }
-                callback(ResultState.Error("Err"))
+                callback(ResultState.Error("err"))
             }
 
             override fun onCancelled(error: DatabaseError) {

@@ -40,6 +40,10 @@ class TestInputActivity : AppCompatActivity() {
         }
         viewModel = ViewModelProvider(this)[TestInputViewModel::class.java]
 
+        binding.btnBack.setOnClickListener {
+            IntentHelper.finish(this)
+        }
+
         adapter = TestAdapter(this)
 
         viewModel.get()
@@ -85,5 +89,10 @@ class TestInputActivity : AppCompatActivity() {
             totalPoint += i.poin
         }
         return totalPoint
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        IntentHelper.finish(this)
     }
 }

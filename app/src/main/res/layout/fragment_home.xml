@@ -468,6 +468,7 @@
                         tools:listitem="@layout/item_news"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:overScrollMode="never"
+                        android:paddingBottom="10dp"
                         android:scrollbars="none"/>
 
                 </FrameLayout>

@@ -43,12 +43,12 @@
             android:textSize="12sp"
             android:maxLines="1"
             android:ellipsize="end"
-            android:visibility="gone"
             android:textColor="@color/textThirdtinary"/>
 
     </LinearLayout>
 
     <TextView
+        android:visibility="gone"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:text="1"
