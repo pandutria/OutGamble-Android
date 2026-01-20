@@ -8,7 +8,7 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 
 class GeminiRepository {
-    private val apiKey = "AIzaSyB10XBGHoC_Xnfqb2eHzxQcxOLkBf9rBys"
+    private val apiKey = "AIzaSyDixARQHj5YihEzmBMJO0QJ6LI1fyKGd6w"
     suspend fun sendMessage(message: String): String {
         return try {
             val request = GeminiRequest.fromMessage(message)

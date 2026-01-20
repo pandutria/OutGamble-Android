@@ -292,7 +292,6 @@
                     android:fontFamily="@font/poppins_regular"
                     android:hint="Tulis deskripsi..."
                     android:paddingLeft="@dimen/spacing_15"
-                    android:maxLines="1"
                     android:gravity="top"
                     android:layout_marginVertical="10dp"
                     android:inputType="text"

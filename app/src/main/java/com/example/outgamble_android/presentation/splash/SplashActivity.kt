@@ -11,8 +11,10 @@ import com.example.outgamble_android.R
 import com.example.outgamble_android.data.local.UserIdPref
 import com.example.outgamble_android.presentation.auth.AuthActivity
 import com.example.outgamble_android.util.IntentHelper
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +27,19 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
+
         lifecycleScope.launch {
-            delay(3000)
-            if (UserIdPref(this@SplashActivity).get() != "")
+            delay(1500)
+
+            val userId = withContext(Dispatchers.IO) {
+                UserIdPref(this@SplashActivity).get()
+            }
+
+            if (userId.isNotEmpty()) {
                 IntentHelper.navigate(this@SplashActivity, MainActivity::class.java)
-            else
+            } else {
                 IntentHelper.navigate(this@SplashActivity, AuthActivity::class.java)
+            }
 
             finish()
         }

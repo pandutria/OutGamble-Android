@@ -50,6 +50,8 @@ class DetectionInputActivity : AppCompatActivity() {
                     binding.btnSend.visibility = View.GONE
                 }
                 is ResultState.Success -> {
+                    binding.pbLoading.visibility = View.GONE
+                    binding.btnSend.visibility = View.VISIBLE
                     val data = state.data
                     val bundle = Bundle().apply {
                         putString("link", data.link)
@@ -57,6 +59,7 @@ class DetectionInputActivity : AppCompatActivity() {
                         putString("risk", data.tingkat_resiko)
                     }
                     IntentHelper.navigate(this, DetectionResultActivity::class.java, bundle)
+                    IntentHelper.finish(this)
                 }
                 is ResultState.Error -> {
                     binding.pbLoading.visibility = View.GONE
